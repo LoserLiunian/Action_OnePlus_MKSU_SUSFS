@@ -160,6 +160,9 @@ jobs:
         run: |
           mkdir kernel_workspace && cd kernel_workspace
           repo init -u https://github.com/OnePlusOSS/kernel_manifest.git -b refs/heads/oneplus/${{ github.event.inputs.CPU }} -m ${{ github.event.inputs.FEIL }}.xml --depth=1
+          MANIFEST_FILE=".repo/manifests/${{ github.event.inputs.FEIL }}.xml"
+          DELETE_LINE='<project remote="clo-la" name="platform\/prebuilts\/boot-artifacts" path="kernel_platform\/prebuilts\/boot-artifacts" revision="45d30d07ad284018481ebb419b5d01b5de72ed02" upstream="refs\/heads\/ks-kernel.lnx.2.0.r1-rel"\/>'
+          sed -i "/${DELETE_LINE}/d" "$MANIFEST_FILE"
           repo sync
           if [  -e kernel_platform/common/BUILD.bazel ]; then
           sed -i '/^[[:space:]]*"protected_exports_list"[[:space:]]*:[[:space:]]*"android\/abi_gki_protected_exports_aarch64",$/d' kernel_platform/common/BUILD.bazel
