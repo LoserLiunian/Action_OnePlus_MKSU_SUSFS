@@ -128,8 +128,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "Numbersf"
-          git config --global user.email "263623064@qq.com"
+          git config --global user.name "LoserLiunian"
+          git config --global user.email "LoserLiunian@gmail.com"
 
       - name: Install dependencies
         run: |
